@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import fakeData from '../../fakeData';
 import happyImage from '../../images/giphy.gif';
-import { getDatabaseCart, processOrder, removeFromDatabaseCart } from '../../utilities/databaseManager';
+import { getDatabaseCart, removeFromDatabaseCart } from '../../utilities/databaseManager';
 import Cart from '../Cart/Cart';
 import ReviewItem from '../ReviewItems/ReviewItem';
 
@@ -9,10 +10,10 @@ const Review = () => {
     const [cart,setCart] = useState([]);
     const [orderPlaced, setOrderPlaced] = useState(false);
 
-    const handleAddProduct = () =>{
-        setCart([]);
-        setOrderPlaced([true]);
-        processOrder();
+    let navigate = useNavigate();
+    const handleCheckout = () =>{
+      
+      navigate("/shipment")
     }
 
     const removeItem = (productKey) =>{
@@ -52,7 +53,7 @@ const Review = () => {
           </div>
           <div>
               <Cart cart={cart}>
-                 <button onClick = {handleAddProduct} className='main-button'>Place Order</button>
+                 <button onClick = {handleCheckout} className='main-button'>Proceed Checkout</button>
               </Cart>
           </div>
         </div>
