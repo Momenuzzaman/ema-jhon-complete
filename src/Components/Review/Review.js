@@ -12,7 +12,6 @@ const Review = () => {
 
     let navigate = useNavigate();
     const handleCheckout = () =>{
-      
       navigate("/shipment")
     }
 
