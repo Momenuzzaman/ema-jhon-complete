@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { UserContext } from '../../App';
 import firebaseConfig from './firebase.config';
 
 
@@ -8,6 +9,7 @@ import firebaseConfig from './firebase.config';
 
 
 function Login() {
+    const [loggedInUser,setLoggedInUser] = useContext(UserContext);
 
   const [user,setUser] = useState({
     isInDisplay: false,
@@ -77,6 +79,7 @@ function Login() {
            const newUserInfo = {...user};
            newUserInfo.error = '';
            setUser(newUserInfo);
+           setLoggedInUser(newUserInfo);
           })
         .catch((error) => {
          const newUserInfo = {...user};
